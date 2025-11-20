@@ -1,0 +1,31 @@
+name: wejha_app
+description: A new Flutter project for Wejha Platform.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.1.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  # أهم المكتبات التي سنحتاجها
+  flutter_screenutil: ^5.9.0       # لضبط المقاسات على كل الشاشات
+  google_fonts: ^6.1.0             # الخطوط العربية
+  smooth_page_indicator: ^1.1.0    # نقاط الترحيب
+  flutter_svg: ^2.0.9              # للصور الفيكتور
+  cupertino_icons: ^1.0.2
+  flutter_localizations:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+  # هنا سنضع الصور لاحقاً
+  assets:
+    - assets/images/
+    
