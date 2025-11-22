@@ -9,14 +9,17 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  # أهم المكتبات التي سنحتاجها
-  flutter_screenutil: ^5.9.0       # لضبط المقاسات على كل الشاشات
-  google_fonts: ^6.1.0             # الخطوط العربية
-  smooth_page_indicator: ^1.1.0    # نقاط الترحيب
-  flutter_svg: ^2.0.9              # للصور الفيكتور
-  cupertino_icons: ^1.0.2
   flutter_localizations:
     sdk: flutter
+  
+  # Core packages
+  flutter_screenutil: ^5.9.0
+  google_fonts: ^6.1.0
+  smooth_page_indicator: ^1.1.0
+  flutter_svg: ^2.0.9
+  cupertino_icons: ^1.0.2
+  firebase_core: ^4.2.1
+  firebase_auth: ^6.1.2
 
 dev_dependencies:
   flutter_test:
@@ -25,7 +28,5 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-  # هنا سنضع الصور لاحقاً
   assets:
     - assets/images/
-    

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
 import 'home_screen.dart';
+import '../requests/my_requests_screen.dart';
+import '../favorites/favorites_screen.dart';
+import '../profile/profile_screen.dart';
 
 class MainLayoutScreen extends StatefulWidget {
   const MainLayoutScreen({super.key});
@@ -14,13 +17,13 @@ class _MainLayoutScreenState extends State<MainLayoutScreen> {
 
   // قائمة الصفحات (حالياً عملنا الرئيسية بس، والباقي مؤقت)
   final List<Widget> _screens = [
-    const HomeScreen(),
-    const Center(child: Text("المفضلة")),
-    const Center(child: Text("طلباتي")),
-    const Center(child: Text("استكشف")),
-    const Center(child: Text("الشخصية")),
+    const HomeScreen(),          // الرئيسية
+    const FavoritesScreen(),     // المفضلة
+    const MyRequestsScreen(),    // طلباتي
+    const Center(child: Text("استكشف (قريباً)")), // يمكن تركها كبحث متقدم لاحقاً
+    const ProfileScreen(),       // حسابي
   ];
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
