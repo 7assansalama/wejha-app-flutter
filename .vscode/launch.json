@@ -1,0 +1,27 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Flutter: Launch (lib/main.dart)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "cwd": "${workspaceFolder}",
+      "preLaunchTask": "flutter pub get"
+    },
+    {
+      "name": "Flutter: Attach to Device",
+      "request": "attach",
+      "type": "dart"
+    },
+    {
+      "name": "Flutter: Run on Chrome (web)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "toolArgs": ["-d", "chrome"],
+      "cwd": "${workspaceFolder}",
+      "preLaunchTask": "flutter pub get"
+    }
+  ]
+}

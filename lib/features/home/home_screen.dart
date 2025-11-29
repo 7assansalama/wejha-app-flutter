@@ -20,7 +20,8 @@ class _HomeScreenState extends State<HomeScreen> {
       name: "مدرسة المستقبل الدولية",
       address: "القاهرة الجديدة، التجمع الخامس",
       rating: 4.8,
-      image: "https://images.unsplash.com/photo-1580582932707-520aed93a94d?w=500",
+      image:
+          "https://images.unsplash.com/photo-1580582932707-520aed93a94d?w=500",
       type: "مدارس",
       isFeatured: true,
     ),
@@ -36,7 +37,8 @@ class _HomeScreenState extends State<HomeScreen> {
       name: "حضانة البراعم الصغيرة",
       address: "المعادي، شارع 9",
       rating: 4.9,
-      image: "https://images.unsplash.com/photo-1587654780291-39c940483713?w=500",
+      image:
+          "https://images.unsplash.com/photo-1587654780291-39c940483713?w=500",
       type: "رياض أطفال",
       isFeatured: false,
     ),
@@ -44,7 +46,8 @@ class _HomeScreenState extends State<HomeScreen> {
       name: "مركز نيوهورايزون للتدريب",
       address: "الدقي، الجيزة",
       rating: 4.2,
-      image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=500",
+      image:
+          "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=500",
       type: "مراكز تدريب",
       isFeatured: false,
     ),
@@ -68,7 +71,9 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final filteredList = _selectedCategory == "الكل"
         ? _allInstitutes
-        : _allInstitutes.where((item) => item.type == _selectedCategory).toList();
+        : _allInstitutes
+            .where((item) => item.type == _selectedCategory)
+            .toList();
 
     return Scaffold(
       backgroundColor: AppColors.background,
@@ -107,7 +112,8 @@ class _Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: 60.h, left: 16.w, right: 16.w, bottom: 30.h),
+      padding:
+          EdgeInsets.only(top: 60.h, left: 16.w, right: 16.w, bottom: 30.h),
       decoration: const BoxDecoration(
         color: AppColors.primary,
         borderRadius: BorderRadius.vertical(bottom: Radius.circular(30)),
@@ -134,10 +140,15 @@ class _AppBarContent extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("الموقع الحالي", style: TextStyle(color: Colors.white70, fontSize: 12.sp)),
+            Text("الموقع الحالي",
+                style: TextStyle(color: Colors.white70, fontSize: 12.sp)),
             Row(
               children: [
-                Text("القاهرة، مصر", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16.sp)),
+                Text("القاهرة، مصر",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16.sp)),
                 const Icon(Icons.keyboard_arrow_down, color: Colors.white),
               ],
             ),
@@ -145,7 +156,8 @@ class _AppBarContent extends StatelessWidget {
         ),
         Container(
           padding: EdgeInsets.all(8.w),
-          decoration: BoxDecoration(color: Colors.white.withAlpha(51), shape: BoxShape.circle),
+          decoration: BoxDecoration(
+              color: Colors.white.withAlpha(51), shape: BoxShape.circle),
           child: const Icon(Icons.notifications_none, color: Colors.white),
         ),
       ],
@@ -164,7 +176,9 @@ class _SearchField extends StatelessWidget {
         prefixIcon: const Icon(Icons.search, color: Colors.grey),
         filled: true,
         fillColor: Colors.white,
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(12.r), borderSide: BorderSide.none),
+        border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12.r),
+            borderSide: BorderSide.none),
         contentPadding: const EdgeInsets.symmetric(vertical: 0),
       ),
     );
@@ -175,7 +189,8 @@ class _CategoryFilters extends StatelessWidget {
   final String selectedCategory;
   final Function(String) onCategorySelected;
 
-  const _CategoryFilters({required this.selectedCategory, required this.onCategorySelected});
+  const _CategoryFilters(
+      {required this.selectedCategory, required this.onCategorySelected});
 
   @override
   Widget build(BuildContext context) {
@@ -188,7 +203,8 @@ class _CategoryFilters extends StatelessWidget {
           _buildFilterChip("جامعات", Icons.account_balance_outlined),
           _buildFilterChip("مراكز تدريب", Icons.cast_for_education),
           _buildFilterChip("رياض أطفال", Icons.child_care),
-        ].expand((widget) => [widget, SizedBox(width: 10.w)]).toList()..removeLast(),
+        ].expand((widget) => [widget, SizedBox(width: 10.w)]).toList()
+          ..removeLast(),
       ),
     );
   }
@@ -205,9 +221,14 @@ class _CategoryFilters extends StatelessWidget {
             decoration: BoxDecoration(
               color: isSelected ? AppColors.primary : Colors.white,
               borderRadius: BorderRadius.circular(12.r),
-              boxShadow: const [BoxShadow(color: Colors.black12, blurRadius: 5, offset: Offset(0, 2))],
+              boxShadow: const [
+                BoxShadow(
+                    color: Colors.black12, blurRadius: 5, offset: Offset(0, 2))
+              ],
             ),
-            child: Icon(icon, color: isSelected ? Colors.white : AppColors.primary, size: 28.sp),
+            child: Icon(icon,
+                color: isSelected ? Colors.white : AppColors.primary,
+                size: 28.sp),
           ),
           SizedBox(height: 8.h),
           Text(
@@ -234,13 +255,17 @@ class _SectionHeader extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          selectedCategory == "الكل" ? "الأكثر اختياراً" : "نتائج $selectedCategory",
-          style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold, color: AppColors.textPrimary),
+          selectedCategory == "الكل"
+              ? "الأكثر اختياراً"
+              : "نتائج $selectedCategory",
+          style: Theme.of(context).textTheme.titleLarge?.copyWith(
+              fontWeight: FontWeight.bold, color: AppColors.textPrimary),
         ),
         if (selectedCategory == "الكل")
           TextButton(
             onPressed: () {},
-            child: const Text("عرض الكل", style: TextStyle(color: AppColors.primary)),
+            child: const Text("عرض الكل",
+                style: TextStyle(color: AppColors.primary)),
           ),
       ],
     );

@@ -5,6 +5,7 @@ import '../../widgets/custom_text_field.dart';
 import '../../widgets/primary_button.dart';
 import '../home/main_layout_screen.dart';
 import 'signup_screen.dart';
+import 'forgot_password_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -93,7 +94,8 @@ class _Header extends StatelessWidget {
         SizedBox(height: 8.h),
         Text(
           "ادخل بياناتك لمتابعة رحلتك معنا",
-          style: textTheme.titleMedium?.copyWith(color: AppColors.textSecondary),
+          style:
+              textTheme.titleMedium?.copyWith(color: AppColors.textSecondary),
         ),
       ],
     );
@@ -123,14 +125,22 @@ class _LoginFormState extends State<_LoginForm> {
           prefixIcon: Icons.lock_outline,
           suffixIcon: IconButton(
             icon: Icon(
-              _isObscure ? Icons.visibility_off_outlined : Icons.visibility_outlined,
+              _isObscure
+                  ? Icons.visibility_off_outlined
+                  : Icons.visibility_outlined,
               color: AppColors.textSecondary,
             ),
             onPressed: () => setState(() => _isObscure = !_isObscure),
           ),
         ),
         TextButton(
-          onPressed: () { /* TODO: Forgot password */ },
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const ForgotPasswordScreen()),
+            );
+          },
           child: Text(
             "نسيت كلمة السر؟",
             style: TextStyle(
@@ -172,9 +182,12 @@ class _PhoneInput extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 16.h),
             child: Row(
               children: [
-                Icon(Icons.flag_circle, color: Colors.green.shade700, size: 20.sp),
+                Icon(Icons.flag_circle,
+                    color: Colors.green.shade700, size: 20.sp),
                 SizedBox(width: 8.w),
-                const Text("+966", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
+                const Text("+966",
+                    style:
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
               ],
             ),
           ),
@@ -187,7 +200,8 @@ class _PhoneInput extends StatelessWidget {
                 hintText: "اكتب رقم الجوال",
                 border: InputBorder.none,
                 contentPadding: EdgeInsets.symmetric(horizontal: 16.w),
-                hintStyle: TextStyle(fontSize: 14.sp, color: AppColors.textSecondary),
+                hintStyle:
+                    TextStyle(fontSize: 14.sp, color: AppColors.textSecondary),
               ),
             ),
           ),
@@ -242,7 +256,9 @@ class _SocialButtons extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         shape: BoxShape.circle,
-        boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.08), blurRadius: 10)],
+        boxShadow: [
+          BoxShadow(color: Colors.black.withOpacity(0.08), blurRadius: 10)
+        ],
       ),
       child: Icon(icon, color: color, size: 24.sp),
     );
