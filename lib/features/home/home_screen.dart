@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../core/theme/app_colors.dart';
 import '../../widgets/institute_card.dart';
+import '../notifications/notifications_screen.dart';
 import '../details/institute_details_screen.dart';
-import '../../models/institute_model.dart';
+import '../../models/institute_model.dart'; // تم التعديل هنا
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -15,48 +16,50 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   String _selectedCategory = "الكل";
 
-  final List<Institute> _allInstitutes = const [
-    Institute(
+  // تم نقل هذا الكلاس إلى 'lib/models/institute_model.dart'
+  // يفضل في تطبيق حقيقي جلب هذه البيانات من API
+  final List<Institute> _allInstitutes = [
+    const Institute(
       name: "مدرسة المستقبل الدولية",
       address: "القاهرة الجديدة، التجمع الخامس",
       rating: 4.8,
       image:
           "https://images.unsplash.com/photo-1580582932707-520aed93a94d?w=500",
-      type: "مدارس",
+      type: "مدارس", // يجب أن يطابق عنوان الفلتر
       isFeatured: true,
     ),
-    Institute(
+    const Institute(
       name: "جامعة الصفوة",
       address: "6 أكتوبر، الحي المتميز",
       rating: 4.5,
       image: "https://images.unsplash.com/photo-1562774053-701939374585?w=500",
-      type: "جامعات",
+      type: "جامعات", // يجب أن يطابق عنوان الفلتر
       isFeatured: false,
     ),
-    Institute(
+    const Institute(
       name: "حضانة البراعم الصغيرة",
       address: "المعادي، شارع 9",
       rating: 4.9,
       image:
           "https://images.unsplash.com/photo-1587654780291-39c940483713?w=500",
-      type: "رياض أطفال",
+      type: "رياض أطفال", // يجب أن يطابق عنوان الفلتر
       isFeatured: false,
     ),
-    Institute(
+    const Institute(
       name: "مركز نيوهورايزون للتدريب",
       address: "الدقي، الجيزة",
       rating: 4.2,
       image:
           "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=500",
-      type: "مراكز تدريب",
+      type: "مراكز تدريب", // يجب أن يطابق عنوان الفلتر
       isFeatured: false,
     ),
-    Institute(
+    const Institute(
       name: "مدرسة النيل المصرية",
       address: "العبور، القليوبية",
       rating: 4.6,
       image: "https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=500",
-      type: "مدارس",
+      type: "مدارس", // يجب أن يطابق عنوان الفلتر
       isFeatured: false,
     ),
   ];
@@ -154,11 +157,19 @@ class _AppBarContent extends StatelessWidget {
             ),
           ],
         ),
-        Container(
-          padding: EdgeInsets.all(8.w),
-          decoration: BoxDecoration(
-              color: Colors.white.withAlpha(51), shape: BoxShape.circle),
-          child: const Icon(Icons.notifications_none, color: Colors.white),
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const NotificationsScreen()));
+          },
+          child: Container(
+            padding: EdgeInsets.all(8.w),
+            decoration: BoxDecoration(
+                color: Colors.white.withAlpha(51), shape: BoxShape.circle),
+            child: const Icon(Icons.notifications_none, color: Colors.white),
+          ),
         ),
       ],
     );
@@ -301,12 +312,8 @@ class _InstituteList extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => InstituteDetailsScreen(
-                  name: item.name,
-                  image: item.image,
-                  type: item.type,
-                ),
-              ),
+                  builder: (context) =>
+                      InstituteDetailsScreen(institute: item)),
             );
           },
         );

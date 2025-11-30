@@ -163,7 +163,7 @@ class _FilterSheetState extends State<FilterSheet> {
         Text(label, style: TextStyle(fontSize: 14.sp)),
         Switch(
           value: value,
-          activeColor: AppColors.primary,
+          activeThumbColor: AppColors.primary,
           onChanged: onChanged,
         ),
       ],

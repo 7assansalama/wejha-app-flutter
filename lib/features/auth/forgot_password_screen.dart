@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../core/theme/app_colors.dart';
 import '../../widgets/primary_button.dart';
 import 'otp_verification_screen.dart';
+import '../../widgets/phone_input_field.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
   const ForgotPasswordScreen({super.key});
@@ -37,42 +38,7 @@ class ForgotPasswordScreen extends StatelessWidget {
             SizedBox(height: 30.h),
 
             // حقل الجوال (نفس الستايل الموحد)
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(12.r),
-                border: Border.all(color: Colors.grey.shade300),
-              ),
-              child: Row(
-                children: [
-                  Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 12.w, vertical: 16.h),
-                    child: Row(
-                      children: [
-                        Icon(Icons.flag, color: Colors.green, size: 20.sp),
-                        SizedBox(width: 8.w),
-                        const Text("+966",
-                            style: TextStyle(fontWeight: FontWeight.bold)),
-                      ],
-                    ),
-                  ),
-                  Container(
-                      width: 1, height: 30.h, color: Colors.grey.shade300),
-                  Expanded(
-                    child: TextFormField(
-                      keyboardType: TextInputType.phone,
-                      textAlign: TextAlign.right,
-                      decoration: InputDecoration(
-                        hintText: "55xxxxxxx",
-                        border: InputBorder.none,
-                        contentPadding: EdgeInsets.symmetric(horizontal: 16.w),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            const PhoneInputField(hintText: "55xxxxxxx"),
 
             const Spacer(),
 

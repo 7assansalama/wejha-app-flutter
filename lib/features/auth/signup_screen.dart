@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../core/theme/app_colors.dart';
 import '../../widgets/custom_text_field.dart';
+import '../../widgets/phone_input_field.dart';
 import '../../widgets/primary_button.dart';
 
 class SignupScreen extends StatelessWidget {
@@ -74,7 +75,8 @@ class _Header extends StatelessWidget {
         SizedBox(height: 8.h),
         Text(
           "ادخل بياناتك لبدء رحلتك معنا",
-          style: textTheme.titleMedium?.copyWith(color: AppColors.textSecondary),
+          style:
+              textTheme.titleMedium?.copyWith(color: AppColors.textSecondary),
         ),
       ],
     );
@@ -101,14 +103,16 @@ class __SignupFormState extends State<_SignupForm> {
           prefixIcon: Icons.person_outline,
         ),
         SizedBox(height: 16.h),
-        const _PhoneInput(),
+        const PhoneInputField(),
         SizedBox(height: 16.h),
         CustomTextField(
           hintText: "كلمة المرور",
           obscureText: _isObscure,
           prefixIcon: Icons.lock_outline,
           suffixIcon: IconButton(
-            icon: Icon(_isObscure ? Icons.visibility_off_outlined : Icons.visibility_outlined),
+            icon: Icon(_isObscure
+                ? Icons.visibility_off_outlined
+                : Icons.visibility_outlined),
             onPressed: () => setState(() => _isObscure = !_isObscure),
             color: AppColors.textSecondary,
           ),
@@ -118,7 +122,7 @@ class __SignupFormState extends State<_SignupForm> {
         SizedBox(height: 24.h),
         PrimaryButton(
           text: "إنشاء حساب",
-          onPressed: _agreedToTerms ? () { /* TODO: Signup */ } : null,
+          onPressed: _agreedToTerms ? () {/* TODO: Signup */} : null,
         ),
       ],
     );
@@ -128,7 +132,7 @@ class __SignupFormState extends State<_SignupForm> {
     return Row(
       children: [
         SizedBox(
-          width: 24.w, 
+          width: 24.w,
           height: 24.h,
           child: Checkbox(
             value: _agreedToTerms,
@@ -161,47 +165,6 @@ class __SignupFormState extends State<_SignupForm> {
   }
 }
 
-class _PhoneInput extends StatelessWidget {
-  const _PhoneInput();
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12.r),
-          border: Border.all(color: Colors.grey.shade300),
-        ),
-        child: Row(
-          children: [
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 16.h),
-              child: Row(
-                children: [
-                  Icon(Icons.flag_circle, color: Colors.green.shade700, size: 20.sp),
-                  SizedBox(width: 8.w),
-                  const Text("+966", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
-                ],
-              ),
-            ),
-            Container(width: 1, height: 30.h, color: Colors.grey.shade300),
-            Expanded(
-              child: TextFormField(
-                keyboardType: TextInputType.phone,
-                textAlign: TextAlign.right,
-                decoration: InputDecoration(
-                  hintText: "اكتب رقم الجوال",
-                  border: InputBorder.none,
-                  contentPadding: EdgeInsets.symmetric(horizontal: 16.w),
-                  hintStyle: TextStyle(fontSize: 14.sp, color: AppColors.textSecondary),
-                ),
-              ),
-            ),
-          ],
-        ));
-  }
-}
-
 class _SocialLoginDivider extends StatelessWidget {
   const _SocialLoginDivider();
 
@@ -212,7 +175,8 @@ class _SocialLoginDivider extends StatelessWidget {
         const Expanded(child: Divider(thickness: 0.5)),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.w),
-          child: Text("أو التسجيل بواسطة", style: Theme.of(context).textTheme.bodySmall),
+          child: Text("أو التسجيل بواسطة",
+              style: Theme.of(context).textTheme.bodySmall),
         ),
         const Expanded(child: Divider(thickness: 0.5)),
       ],
@@ -239,12 +203,14 @@ class _SocialButtons extends StatelessWidget {
 
   Widget _buildSocialButton(IconData icon, Color color) {
     return Container(
-      width: 50.w, 
+      width: 50.w,
       height: 50.h,
       decoration: BoxDecoration(
         color: Colors.white,
         shape: BoxShape.circle,
-        boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.08), blurRadius: 10)],
+        boxShadow: [
+          BoxShadow(color: Colors.black.withOpacity(0.08), blurRadius: 10)
+        ],
       ),
       child: Icon(icon, color: color, size: 24.sp),
     );
@@ -259,7 +225,8 @@ class _LoginRedirect extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text("لديك حساب بالفعل؟ ", style: Theme.of(context).textTheme.bodyMedium),
+        Text("لديك حساب بالفعل؟ ",
+            style: Theme.of(context).textTheme.bodyMedium),
         GestureDetector(
           onTap: () => Navigator.pop(context),
           child: Text(
