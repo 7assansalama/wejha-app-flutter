@@ -103,7 +103,7 @@ class __SignupFormState extends State<_SignupForm> {
           prefixIcon: Icons.person_outline,
         ),
         SizedBox(height: 16.h),
-        const PhoneInputField(),
+        PhoneInputField(),
         SizedBox(height: 16.h),
         CustomTextField(
           hintText: "كلمة المرور",

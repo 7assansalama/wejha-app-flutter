@@ -5,6 +5,9 @@ import '../../widgets/institute_card.dart';
 import '../notifications/notifications_screen.dart';
 import '../details/institute_details_screen.dart';
 import '../../models/institute_model.dart'; // تم التعديل هنا
+import '../../widgets/filter_sheet.dart';
+import '../comparison/comparison_screen.dart';
+import 'map_view_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -125,7 +128,7 @@ class _Header extends StatelessWidget {
         children: [
           const _AppBarContent(),
           SizedBox(height: 20.h),
-          const _SearchField(),
+          const _SearchAndFilter(),
         ],
       ),
     );
@@ -176,21 +179,67 @@ class _AppBarContent extends StatelessWidget {
   }
 }
 
-class _SearchField extends StatelessWidget {
-  const _SearchField();
+class _SearchAndFilter extends StatelessWidget {
+  const _SearchAndFilter();
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      decoration: InputDecoration(
-        hintText: "اكتب ما تبحث عنه...",
-        prefixIcon: const Icon(Icons.search, color: Colors.grey),
-        filled: true,
-        fillColor: Colors.white,
-        border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12.r),
-            borderSide: BorderSide.none),
-        contentPadding: const EdgeInsets.symmetric(vertical: 0),
+    return Row(
+      children: [
+        // حقل البحث
+        Expanded(
+          child: TextField(
+            decoration: InputDecoration(
+              hintText: "اكتب ما تبحث عنه...",
+              prefixIcon: const Icon(Icons.search, color: Colors.grey),
+              filled: true,
+              fillColor: Colors.white,
+              border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12.r),
+                  borderSide: BorderSide.none),
+              contentPadding: const EdgeInsets.symmetric(vertical: 0),
+            ),
+          ),
+        ),
+        SizedBox(width: 10.w),
+        // زر الخريطة
+        _buildIconButton(
+          context,
+          icon: Icons.map_outlined,
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const MapViewScreen()));
+          },
+        ),
+        SizedBox(width: 10.w),
+        // زر الفلتر
+        _buildIconButton(
+          context,
+          icon: Icons.filter_list,
+          onPressed: () {
+            showModalBottomSheet(
+              context: context,
+              isScrollControlled: true,
+              backgroundColor: Colors.transparent,
+              builder: (context) => const FilterSheet(),
+            );
+          },
+        ),
+      ],
+    );
+  }
+
+  Widget _buildIconButton(BuildContext context,
+      {required IconData icon, required VoidCallback onPressed}) {
+    return GestureDetector(
+      onTap: onPressed,
+      child: Container(
+        padding: EdgeInsets.all(12.w),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12.r),
+        ),
+        child: Icon(icon, color: AppColors.primary, size: 24.sp),
       ),
     );
   }
@@ -270,13 +319,31 @@ class _SectionHeader extends StatelessWidget {
               ? "الأكثر اختياراً"
               : "نتائج $selectedCategory",
           style: Theme.of(context).textTheme.titleLarge?.copyWith(
-              fontWeight: FontWeight.bold, color: AppColors.textPrimary),
+                fontWeight: FontWeight.bold,
+                color: AppColors.textPrimary,
+              ),
         ),
         if (selectedCategory == "الكل")
-          TextButton(
-            onPressed: () {},
-            child: const Text("عرض الكل",
-                style: TextStyle(color: AppColors.primary)),
+          Row(
+            children: [
+              // زر المقارنة
+              TextButton.icon(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ComparisonScreen()));
+                },
+                icon: const Icon(Icons.compare_arrows, size: 16),
+                label: const Text("مقارنة",
+                    style: TextStyle(color: AppColors.primary)),
+              ),
+              TextButton(
+                onPressed: () {},
+                child: const Text("عرض الكل",
+                    style: TextStyle(color: AppColors.primary)),
+              ),
+            ],
           ),
       ],
     );

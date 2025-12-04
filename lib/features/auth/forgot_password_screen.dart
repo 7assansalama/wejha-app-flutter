@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../core/theme/app_colors.dart';
 import '../../widgets/primary_button.dart';
-import 'otp_verification_screen.dart';
 import '../../widgets/phone_input_field.dart';
+import 'otp_verification_screen.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
   const ForgotPasswordScreen({super.key});
@@ -36,12 +36,8 @@ class ForgotPasswordScreen extends StatelessWidget {
               style: TextStyle(fontSize: 14.sp, color: Colors.grey),
             ),
             SizedBox(height: 30.h),
-
-            // حقل الجوال (نفس الستايل الموحد)
             const PhoneInputField(hintText: "55xxxxxxx"),
-
             const Spacer(),
-
             PrimaryButton(
               text: "إرسال الرمز",
               onPressed: () {
